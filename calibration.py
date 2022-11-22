@@ -184,7 +184,7 @@ def get_mask(hsv , lower_color , upper_color):
 
     return mask
 
-capture = cv2.VideoCapture("./display.avi")
+capture = cv2.VideoCapture(0)
 skyratsImg = cv2.imread("./skyrats_logo.jpeg")
 skyratsImgResize = cv2.resize(skyratsImg, (300, 300))
 
