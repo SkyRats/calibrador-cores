@@ -2,6 +2,9 @@
 # INSTALL VERSION 4.2.0 OF OPENCV: pip install opencv-python==4.2.0.34
 # sudo apt-get install scrot
 
+IMAGE = False
+img_name = "./line.jpeg"
+
 import cv2
 import numpy as np
 import pyautogui
@@ -127,10 +130,8 @@ def print_mask():
     sMax = cv2.getTrackbarPos('SMax', 'Parâmetros')
     vMax = cv2.getTrackbarPos('VMax', 'Parâmetros')
 
-    print("Lower mask:")
-    print(f' [ {hMin}, {sMin}, {vMin}]')
-    print("Upper mask")
-    print(f' [ {hMax}, {sMax}, {vMax}]')
+    print(f'lower_mask = np.array([ {hMin}, {sMin}, {vMin}])')
+    print(f'upper_mask = np.array([ {hMax}, {sMax}, {vMax}])')
 
 def set_red(): 
     cv2.setTrackbarPos('HMin', 'Parâmetros', 0)
@@ -213,7 +214,8 @@ while True:
     
     if not pause:
         success, frame = capture.read()
-    
+    if IMAGE:
+        frame = cv2.imread(img_name)
 
     if success == False:
         raise ConnectionError
